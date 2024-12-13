@@ -1,0 +1,20 @@
+{
+  "release_totem_items": {
+    "sounds": [
+      {
+        "name": "charmony-totem-of-preserving:totem_release_items",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.charmony-totem-of-preserving.release_items"
+  },
+  "store_totem_items": {
+    "sounds": [
+      {
+        "name": "charmony-totem-of-preserving:totem_store_items",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.charmony-totem-of-preserving.store_items"
+  }
+}

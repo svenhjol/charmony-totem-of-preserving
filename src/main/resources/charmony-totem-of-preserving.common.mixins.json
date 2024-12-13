@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "svenhjol.charmony.totem_of_preserving.common.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "${refmap_file}",
+  "plugin": "svenhjol.charmony.totem_of_preserving.common.mixins.CommonMixinConfig",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "totem.LevelMixin"
+  ]
+}
