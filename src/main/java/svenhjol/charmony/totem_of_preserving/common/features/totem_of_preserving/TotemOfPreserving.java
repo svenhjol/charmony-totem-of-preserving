@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.util.Mth;
 import svenhjol.charmony.core.annotations.Configurable;
@@ -6,10 +6,10 @@ import svenhjol.charmony.core.annotations.FeatureDefinition;
 import svenhjol.charmony.core.base.Mod;
 import svenhjol.charmony.core.base.SidedFeature;
 import svenhjol.charmony.core.enums.Side;
-import svenhjol.charmony.totem_of_preserving.TotemOfPreserving;
+import svenhjol.charmony.totem_of_preserving.TotemOfPreservingMod;
 
-@FeatureDefinition(side = Side.Common, description = "Preserves your items on death.")
-public final class Totem extends SidedFeature {
+@FeatureDefinition(side = Side.Common, canBeDisabled = false, description = "Protects your items on death.")
+public final class TotemOfPreserving extends SidedFeature {
     public final Advancements advancements;
     public final Registers registers;
     public final Handlers handlers;
@@ -22,6 +22,16 @@ public final class Totem extends SidedFeature {
             If false, you must be holding a totem of preserving to preserve your items on death."""
     )
     private static boolean graveMode = false;
+
+    @Configurable(
+        name = "Must be in hand",
+        requireRestart = false,
+        description = """
+            If true, you must be holding a totem of preserving in your main hand or off-hand for it to preserve your items.
+            If false, the totem will work if it is in your hands or your inventory.
+            Note: This has no effect if 'Grave mode' is enabled."""
+    )
+    private static boolean mustBeInHand = false;
 
     @Configurable(
         name = "Durability",
@@ -47,7 +57,7 @@ public final class Totem extends SidedFeature {
     )
     private static boolean showDeathPositionInChat = false;
 
-    public Totem(Mod instance) {
+    public TotemOfPreserving(Mod instance) {
         super(instance);
 
         advancements = new Advancements(this);
@@ -56,12 +66,16 @@ public final class Totem extends SidedFeature {
         providers = new Providers(this);
     }
 
-    public static Totem feature() {
-        return TotemOfPreserving.instance().sidedFeature(Totem.class);
+    public static TotemOfPreserving feature() {
+        return TotemOfPreservingMod.instance().sidedFeature(TotemOfPreserving.class);
     }
 
     public boolean graveMode() {
         return graveMode;
+    }
+
+    public boolean mustBeInHand() {
+        return mustBeInHand;
     }
 
     public int durability() {

@@ -2,8 +2,8 @@ package svenhjol.charmony.totem_of_preserving.common;
 
 import net.fabricmc.api.ModInitializer;
 import svenhjol.charmony.core.enums.Side;
-import svenhjol.charmony.totem_of_preserving.TotemOfPreserving;
-import svenhjol.charmony.totem_of_preserving.common.features.totem.Totem;
+import svenhjol.charmony.totem_of_preserving.TotemOfPreservingMod;
+import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemOfPreserving;
 
 public class CommonInitializer implements ModInitializer {
     @Override
@@ -11,8 +11,8 @@ public class CommonInitializer implements ModInitializer {
         // Ensure charmony is launched first.
         svenhjol.charmony.core.common.CommonInitializer.init();
 
-        var mod = TotemOfPreserving.instance();
-        mod.addSidedFeature(Totem.class);
+        var mod = TotemOfPreservingMod.instance();
+        mod.addSidedFeature(TotemOfPreserving.class);
 
         mod.run(Side.Common);
     }

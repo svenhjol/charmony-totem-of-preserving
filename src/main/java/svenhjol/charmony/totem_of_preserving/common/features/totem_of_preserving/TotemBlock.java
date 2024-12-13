@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -80,7 +80,7 @@ public class TotemBlock extends BaseEntityBlock {
      */
     @Override
     public void onRemove(BlockState blockState, Level level, BlockPos pos, BlockState state, boolean bl) {
-        Totem.feature().handlers.serverWantsToRemoveBlock(level, pos);
+        TotemOfPreserving.feature().handlers.serverWantsToRemoveBlock(level, pos);
         super.onRemove(blockState, level, pos, state, bl);
     }
 
@@ -89,7 +89,7 @@ public class TotemBlock extends BaseEntityBlock {
      */
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        Totem.feature().handlers.playerEnteredBlock(level, pos, entity);
+        TotemOfPreserving.feature().handlers.playerEnteredBlock(level, pos, entity);
         super.entityInside(state, level, pos, entity);
     }
 }

@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -26,7 +26,7 @@ public class TotemBlockEntity extends BlockEntity {
     private int damage = 0;
 
     public TotemBlockEntity(BlockPos pos, BlockState state) {
-        super(Totem.feature().registers.blockEntity.get(), pos, state);
+        super(TotemOfPreserving.feature().registers.blockEntity.get(), pos, state);
     }
 
     public float getRotateTicks() {

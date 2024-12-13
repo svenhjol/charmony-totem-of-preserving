@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public final class Providers extends Setup<Totem> implements
+public final class Providers extends Setup<TotemOfPreserving> implements
     TotemPreservingProvider,
     TotemInventoryCheckProvider
 {
     public final List<TotemPreservingProvider> preservingProviders = new ArrayList<>();
     public final List<TotemInventoryCheckProvider> inventoryCheckProviders = new ArrayList<>();
 
-    public Providers(Totem feature) {
+    public Providers(TotemOfPreserving feature) {
         super(feature);
     }
 

@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.client.features.totem;
+package svenhjol.charmony.totem_of_preserving.client.features.totem_of_preserving;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -6,8 +6,8 @@ import net.minecraft.world.item.Items;
 import svenhjol.charmony.core.base.Setup;
 import svenhjol.charmony.core.client.ClientRegistry;
 
-public final class Registers extends Setup<Totem> {
-    public Registers(Totem feature) {
+public final class Registers extends Setup<TotemOfPreserving> {
+    public Registers(TotemOfPreserving feature) {
         super(feature);
         var registry = ClientRegistry.forFeature(feature);
 

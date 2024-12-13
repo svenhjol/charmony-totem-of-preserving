@@ -5,10 +5,10 @@
       "id": "charmony-totem-of-preserving:totem_of_preserving"
     },
     "title": {
-      "translate": "advancements.charmony-totem-of-preserving.title"
+      "translate": "advancements.charmony.totem_of_preserving.title"
     },
     "description": {
-      "translate": "advancements.charmony-totem-of-preserving.description"
+      "translate": "advancements.charmony.totem_of_preserving.description"
     },
     "frame": "task",
     "show_toast": false,

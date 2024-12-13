@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.client.features.totem;
+package svenhjol.charmony.totem_of_preserving.client.features.totem_of_preserving;
 
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

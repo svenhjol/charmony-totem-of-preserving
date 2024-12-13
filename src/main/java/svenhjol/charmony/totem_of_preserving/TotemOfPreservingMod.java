@@ -6,20 +6,20 @@ import svenhjol.charmony.core.base.Mod;
 import svenhjol.charmony.core.enums.Side;
 
 @ModDefinition(
-    id = TotemOfPreserving.ID,
+    id = TotemOfPreservingMod.ID,
     name = "Totem of Preserving",
     sides = {Side.Client, Side.Common},
     description = "A totem that preserves your items on death."
 )
-public class TotemOfPreserving extends Mod {
+public class TotemOfPreservingMod extends Mod {
     public static final String ID = "charmony-totem-of-preserving";
-    private static TotemOfPreserving instance;
+    private static TotemOfPreservingMod instance;
 
-    private TotemOfPreserving() {}
+    private TotemOfPreservingMod() {}
 
-    public static TotemOfPreserving instance() {
+    public static TotemOfPreservingMod instance() {
         if (instance == null) {
-            instance = new TotemOfPreserving();
+            instance = new TotemOfPreservingMod();
         }
         return instance;
     }

@@ -8,10 +8,10 @@
       }
     },
     "title": {
-      "translate": "advancements.charmony-totem-of-preserving.used_totem_of_preserving.title"
+      "translate": "advancements.charmony.used_totem_of_preserving.title"
     },
     "description": {
-      "translate": "advancements.charmony-totem-of-preserving.used_totem_of_preserving.description"
+      "translate": "advancements.charmony.used_totem_of_preserving.description"
     },
     "frame": "challenge",
     "show_toast": true,

@@ -1,15 +1,14 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
-import svenhjol.charmony.totem_of_preserving.client.features.totem.Tooltip;
+import svenhjol.charmony.totem_of_preserving.client.features.totem_of_preserving.Tooltip;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +17,7 @@ public class TotemItem extends Item {
     public TotemItem(ResourceKey<Item> key) {
         super(new Properties()
             .stacksTo(1)
-            .durability(Totem.feature().durability())
+            .durability(TotemOfPreserving.feature().durability())
             .repairable(Items.ECHO_SHARD)
             .rarity(Rarity.UNCOMMON)
             .setId(key));
@@ -26,7 +25,8 @@ public class TotemItem extends Item {
 
     @Override
     public boolean isFoil(ItemStack stack) {
-        return stack.has(DataComponents.ENCHANTABLE);
+        var data = TotemData.get(stack);
+        return data.glint();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class TotemItem extends Item {
         var hand = context.getHand();
 
         if (player != null) {
-            return Totem.feature().handlers.useTotemInHand(level, player, hand);
+            return TotemOfPreserving.feature().handlers.useTotemInHand(level, player, hand);
         }
 
         return super.useOn(context);

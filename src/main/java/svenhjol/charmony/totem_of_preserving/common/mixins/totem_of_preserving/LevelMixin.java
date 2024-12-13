@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.mixins.totem;
+package svenhjol.charmony.totem_of_preserving.common.mixins.totem_of_preserving;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import svenhjol.charmony.totem_of_preserving.common.features.totem.Totem;
+import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemOfPreserving;
 
 @Mixin(Level.class)
 public abstract class LevelMixin {
@@ -54,7 +54,7 @@ public abstract class LevelMixin {
     @Unique
     private boolean isProtected(BlockPos pos) {
         var dimension = this.dimension().location();
-        var feature = Totem.feature();
+        var feature = TotemOfPreserving.feature();
         return feature.handlers.protectedPositions.containsKey(dimension)
             && feature.handlers.protectedPositions.get(dimension).contains(pos);
     }

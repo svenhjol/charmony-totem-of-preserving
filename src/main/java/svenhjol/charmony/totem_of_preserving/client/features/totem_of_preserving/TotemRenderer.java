@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.client.features.totem;
+package svenhjol.charmony.totem_of_preserving.client.features.totem_of_preserving;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -9,14 +9,14 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import svenhjol.charmony.totem_of_preserving.common.features.totem.TotemBlockEntity;
-import svenhjol.charmony.totem_of_preserving.common.features.totem.TotemItem;
+import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemBlockEntity;
+import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemItem;
 
 public class TotemRenderer<T extends TotemBlockEntity> implements BlockEntityRenderer<T> {
     private final ItemStack stack;
 
     public TotemRenderer(BlockEntityRendererProvider.Context context) {
-        this.stack = new ItemStack(Totem.feature().common.get().registers.item.get());
+        this.stack = new ItemStack(TotemOfPreserving.feature().common.get().registers.item.get());
         TotemItem.setGlint(this.stack, true);
     }
 

@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -36,7 +36,7 @@ public record TotemData(List<ItemStack> items, String message, boolean glint) {
     }
 
     public static TotemData get(ItemStack stack) {
-        return stack.getOrDefault(Totem.feature().registers.data.get(), EMPTY);
+        return stack.getOrDefault(TotemOfPreserving.feature().registers.data.get(), EMPTY);
     }
 
     public static Mutable mutable(ItemStack stack) {
@@ -44,7 +44,7 @@ public record TotemData(List<ItemStack> items, String message, boolean glint) {
     }
 
     public static void set(ItemStack stack, Mutable mutable) {
-        stack.set(Totem.feature().registers.data.get(), mutable.toImmutable());
+        stack.set(TotemOfPreserving.feature().registers.data.get(), mutable.toImmutable());
     }
 
     public static class Mutable {

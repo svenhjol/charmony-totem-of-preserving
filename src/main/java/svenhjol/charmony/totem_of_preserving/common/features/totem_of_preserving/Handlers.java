@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -21,18 +21,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import svenhjol.charmony.api.TotemType;
-import svenhjol.charmony.core.base.Feature;
-import svenhjol.charmony.core.base.Mod;
 import svenhjol.charmony.core.base.Setup;
 import svenhjol.charmony.core.events.AnvilEvents;
 
 import java.util.*;
 
-public final class Handlers extends Setup<Totem> {
+public final class Handlers extends Setup<TotemOfPreserving> {
     public final Map<ResourceLocation, List<BlockPos>> protectedPositions = new HashMap<>();
 
-    public Handlers(Totem feature) {
+    public Handlers(TotemOfPreserving feature) {
         super(feature);
     }
 
@@ -105,6 +102,7 @@ public final class Handlers extends Setup<Totem> {
             return InteractionResult.PASS;
         }
 
+        var totemItem = feature().registers.item.get();
         var found = ItemStack.EMPTY;
         var damage = 0; // Track how much damage the totem has taken
         var serverPlayer = (ServerPlayer)player;
@@ -120,15 +118,12 @@ public final class Handlers extends Setup<Totem> {
 
         // When not in grave mode, look through inventory items for the first empty totem of preserving.
         if (!feature().graveMode()) {
-            var totemWorksFromInventory = Mod.tryFeature(ResourceLocation.parse("charmony-tweaks:totems_work_from_inventory"));
-            if (totemWorksFromInventory.map(Feature::enabled).orElse(false)) {
-                for (var provider : feature().providers.inventoryCheckProviders) {
-                    var item = provider.findTotemFromInventory(player, TotemType.PRESERVING);
-
-                    if (item.isPresent()) {
+            if (!feature().mustBeInHand()) {
+                for (var item : player.getInventory().items) {
+                    if (item.is(totemItem)) {
                         // Found totem in inventory.
                         log().debug("Found totem in inventory");
-                        found = item.get();
+                        found = item;
                         damage = found.getDamageValue();
                         break;
                     }

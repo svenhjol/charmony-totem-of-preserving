@@ -1,4 +1,4 @@
-package svenhjol.charmony.totem_of_preserving.common.features.totem;
+package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.sounds.SoundEvent;
@@ -11,7 +11,7 @@ import svenhjol.charmony.core.events.PlayerKilledDropCallback;
 import java.util.List;
 import java.util.function.Supplier;
 
-public final class Registers extends Setup<Totem> {
+public final class Registers extends Setup<TotemOfPreserving> {
     public final Supplier<DataComponentType<TotemData>> data;
     public final Supplier<SoundEvent> releaseSound;
     public final Supplier<SoundEvent> storeSound;
@@ -20,7 +20,7 @@ public final class Registers extends Setup<Totem> {
     public final Supplier<TotemBlock> block;
     public final Supplier<BlockEntityType<TotemBlockEntity>> blockEntity;
 
-    public Registers(Totem feature) {
+    public Registers(TotemOfPreserving feature) {
         super(feature);
         var registry = CommonRegistry.forFeature(feature);
 
