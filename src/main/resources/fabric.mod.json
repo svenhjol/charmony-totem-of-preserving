@@ -8,7 +8,7 @@
   "authors": [
     "svenhjol"
   ],
-  "icon": "assets/charmony-tweaks/textures/gui/sprites/icon.png",
+  "icon": "assets/charmony-totem-of-preserving/textures/gui/sprites/icon.png",
   "license": "MIT",
   "environment": "*",
   "mixins": [
