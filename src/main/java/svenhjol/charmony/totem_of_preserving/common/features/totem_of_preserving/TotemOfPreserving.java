@@ -17,6 +17,7 @@ public final class TotemOfPreserving extends SidedFeature {
 
     @Configurable(
         name = "Grave mode",
+        requireRestart = false,
         description = """
             If true, a totem of preserving will always be created when you die.
             If false, you must be holding a totem of preserving to preserve your items on death."""
@@ -45,15 +46,15 @@ public final class TotemOfPreserving extends SidedFeature {
 
     @Configurable(
         name = "Owner only",
-        description = "If true, only the owner of the totem may pick it up.",
-        requireRestart = false
+        requireRestart = false,
+        description = "If true, only the owner of the totem may pick it up."
     )
     private static boolean ownerOnly = false;
 
     @Configurable(
         name = "Show death position",
-        description = "If true, the coordinates where you died will be added to the player's chat screen.",
-        requireRestart = false
+        requireRestart = false,
+        description = "If true, the coordinates where you died will be added to the player's chat screen."
     )
     private static boolean showDeathPositionInChat = false;
 
