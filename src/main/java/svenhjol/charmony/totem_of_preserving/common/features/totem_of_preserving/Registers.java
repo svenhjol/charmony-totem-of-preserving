@@ -32,7 +32,7 @@ public final class Registers extends Setup<TotemOfPreserving> {
         block = registry.block("totem_of_preserving_holder", TotemBlock::new);
         item = registry.item("totem_of_preserving", TotemItem::new);
 
-        blockEntity = registry.blockEntity("totem_block", TotemBlockEntity::new, List.of(block));
+        blockEntity = registry.blockEntity("totem_block", () -> TotemBlockEntity::new, List.of(block));
 
         releaseSound = registry.sound("release_totem_items");
         storeSound = registry.sound("store_totem_items");
