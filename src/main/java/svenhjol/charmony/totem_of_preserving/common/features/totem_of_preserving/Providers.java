@@ -46,7 +46,7 @@ public final class Providers extends Setup<TotemOfPreserving> implements
 
     @Override
     public Optional<ItemStack> findTotemFromInventory(Player player, TotemType totemType) {
-        if (totemType == TotemType.PRESERVING) {
+        if (totemType == TotemType.Preserving) {
             var totem = feature().registers.item.get();
 
             var mainHand = player.getMainHandItem();

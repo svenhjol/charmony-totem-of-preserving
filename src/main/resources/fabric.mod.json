@@ -5,37 +5,47 @@
 
   "name": "Charmony Totem of Preserving",
   "description": "Adds a totem that preserves your items when you die.",
+
   "authors": [
     "svenhjol"
   ],
   "icon": "assets/charmony-totem-of-preserving/textures/gui/sprites/icon.png",
   "license": "MIT",
   "environment": "*",
+  "accessWidener": "charmony-totem-of-preserving.accesswidener",
+  "entrypoints": {
+    "main": [
+        "svenhjol.charmony.totem_of_preserving.common.CommonInitializer"
+    ],
+    "client": [
+        "svenhjol.charmony.totem_of_preserving.client.ClientInitializer"
+    ]
+  },
+
   "mixins": [
     "charmony-totem-of-preserving.common.mixins.json"
   ],
-  "accessWidener": "charmony-totem-of-preserving.accesswidener",
-
-  "entrypoints": {
-    "main": [
-      "svenhjol.charmony.totem_of_preserving.common.CommonInitializer"
-    ],
-    "client": [
-      "svenhjol.charmony.totem_of_preserving.client.ClientInitializer"
-    ]
-  },
 
   "depends": {
     "fabricloader": ">=${loader_version}",
     "minecraft": "*",
-    "java": ">=21",
+    "java": ">=${java_version}",
     "fabric-api": "*",
-    "charmony": "${charmony_version}",
-    "charmony-api": "${api_version}"
+    "charmony": ">=${charmony_version}",
+    "charmony-api": ">=${api_version}"
   },
 
   "contact": {
-    "homepage": "https://charmony.work",
+    "homepage": "${homepage_link}",
     "sources": "https://github.com/svenhjol/${mod_id}"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "${discord_link}"
+      },
+      "update_checker": true
+    }
   }
 }
