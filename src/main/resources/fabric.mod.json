@@ -19,6 +19,9 @@
     ],
     "client": [
         "svenhjol.charmony.totem_of_preserving.client.ClientInitializer"
+    ],
+    "modmenu": [
+        "svenhjol.charmony.totem_of_preserving.integration.ModMenuPlugin"
     ]
   },
 
