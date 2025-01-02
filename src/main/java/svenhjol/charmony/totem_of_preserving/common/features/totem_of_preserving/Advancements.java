@@ -2,7 +2,7 @@ package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preservin
 
 import net.minecraft.world.entity.player.Player;
 import svenhjol.charmony.core.base.Setup;
-import svenhjol.charmony.core.helper.AdvancementHelper;
+import svenhjol.charmony.core.helpers.AdvancementHelper;
 
 public final class Advancements extends Setup<TotemOfPreserving> {
     public Advancements(TotemOfPreserving feature) {
