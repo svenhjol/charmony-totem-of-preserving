@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Update icon.
+
 ## 1.1.0
 
 - Refactor for Charmony 1.19.0.
