@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2
+
+- Downgrade challenge advancement to goal.
+- Update to work with Charmony 1.20.x.
+
 ## 1.1.1
 
 - Update icon.
