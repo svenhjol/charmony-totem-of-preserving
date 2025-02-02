@@ -6,7 +6,6 @@ import svenhjol.charmony.core.annotations.FeatureDefinition;
 import svenhjol.charmony.core.base.Mod;
 import svenhjol.charmony.core.base.SidedFeature;
 import svenhjol.charmony.core.enums.Side;
-import svenhjol.charmony.totem_of_preserving.TotemOfPreservingMod;
 
 @FeatureDefinition(side = Side.Common, canBeDisabled = false, description = "Protects your items on death.")
 public final class TotemOfPreserving extends SidedFeature {
@@ -68,7 +67,7 @@ public final class TotemOfPreserving extends SidedFeature {
     }
 
     public static TotemOfPreserving feature() {
-        return TotemOfPreservingMod.instance().sidedFeature(TotemOfPreserving.class);
+        return Mod.getSidedFeature(TotemOfPreserving.class);
     }
 
     public boolean graveMode() {
