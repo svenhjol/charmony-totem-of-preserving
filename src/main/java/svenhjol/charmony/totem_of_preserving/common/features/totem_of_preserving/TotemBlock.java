@@ -79,9 +79,9 @@ public class TotemBlock extends BaseEntityBlock {
      * Executed when the game wants to delete a totem block.
      */
     @Override
-    public void onRemove(BlockState blockState, Level level, BlockPos pos, BlockState state, boolean bl) {
+    public void affectNeighborsAfterRemoval(BlockState blockState, ServerLevel level, BlockPos pos, boolean bl) {
         TotemOfPreserving.feature().handlers.serverWantsToRemoveBlock(level, pos);
-        super.onRemove(blockState, level, pos, state, bl);
+        super.affectNeighborsAfterRemoval(blockState, level, pos, bl);
     }
 
     /**

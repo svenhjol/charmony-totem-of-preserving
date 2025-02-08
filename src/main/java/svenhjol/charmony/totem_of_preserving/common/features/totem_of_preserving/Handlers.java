@@ -14,6 +14,8 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +23,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import svenhjol.charmony.api.TotemType;
 import svenhjol.charmony.core.base.Setup;
 import svenhjol.charmony.core.events.AnvilEvents;
 
@@ -119,17 +122,19 @@ public final class Handlers extends Setup<TotemOfPreserving> {
         // When not in grave mode, look through inventory items for the first empty totem of preserving.
         if (!feature().graveMode()) {
             if (!feature().mustBeInHand()) {
-                for (var item : player.getInventory().items) {
-                    if (item.is(totemItem)) {
+                for (var provider : feature().providers.inventoryCheckProviders) {
+                    var opt = provider.findTotemFromInventory(player, TotemType.Preserving);
+                    if (opt.isPresent()) {
                         // Found totem in inventory.
                         log().debug("Found totem in inventory");
-                        found = item;
+                        found = opt.get();
                         damage = found.getDamageValue();
                         break;
                     }
                 }
             } else {
-                for (var held : player.getHandSlots()) {
+                for (EquipmentSlot slot : EquipmentSlotGroup.HAND) {
+                    var held = player.getItemBySlot(slot);
                     if (!held.is(feature().registers.item.get())) {
                         continue;
                     }
@@ -168,7 +173,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
         // Remove the totem from the inventory so it doesn't get included in the preserved items.
         // This doesn't do anything in graveMode because found is always empty.
         if (!found.isEmpty()) {
-            found.shrink(found.getCount());
+            found.setCount(0);
             preserveItems = preserveItems.stream().filter(i -> !i.isEmpty()).toList(); // refilter to remove air
         }
 
@@ -412,11 +417,11 @@ public final class Handlers extends Setup<TotemOfPreserving> {
     }
 
     private void destroyTotemServer(Player player, ItemStack totem) {
-        if (player.getAbilities().instabuild) {
+        if (player.hasInfiniteMaterials()) {
             return;
         }
 
-        totem.shrink(1);
+        totem.setCount(0);
 
         if (!player.level().isClientSide) {
             player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 0.8f, 1.0f);

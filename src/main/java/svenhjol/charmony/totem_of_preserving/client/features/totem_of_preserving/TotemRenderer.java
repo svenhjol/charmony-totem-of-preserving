@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemBlockEntity;
 import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemItem;
 
@@ -21,7 +22,7 @@ public class TotemRenderer<T extends TotemBlockEntity> implements BlockEntityRen
     }
 
     @Override
-    public void render(T entity, float tickDelta, PoseStack poseStack, MultiBufferSource bufferSource, int light, int overlay) {
+    public void render(T entity, float tickDelta, PoseStack poseStack, MultiBufferSource bufferSource, int light, int overlay, Vec3 vec3) {
         poseStack.pushPose();
         poseStack.scale(1f, 1f, 1f);
         poseStack.translate(0.5f, 0.5f, 0.5f);

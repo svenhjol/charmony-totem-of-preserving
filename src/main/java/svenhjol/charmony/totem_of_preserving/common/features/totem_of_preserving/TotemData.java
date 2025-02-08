@@ -2,14 +2,21 @@ package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preservin
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipProvider;
 
 import java.util.List;
+import java.util.function.Consumer;
 
-public record TotemData(List<ItemStack> items, String message, boolean glint) {
+public record TotemData(List<ItemStack> items, String message, boolean glint) implements TooltipProvider {
     public static final Codec<TotemData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         ItemStack.OPTIONAL_CODEC.listOf().fieldOf("items")
             .forGetter(TotemData::items),
@@ -45,6 +52,19 @@ public record TotemData(List<ItemStack> items, String message, boolean glint) {
 
     public static void set(ItemStack stack, Mutable mutable) {
         stack.set(TotemOfPreserving.feature().registers.data.get(), mutable.toImmutable());
+    }
+
+    @Override
+    public void addToTooltip(Item.TooltipContext tooltipContext, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter dataComponentGetter) {
+        if (!this.message().isEmpty()) {
+            consumer.accept(Component.literal(this.message()));
+        }
+
+        if (!this.items().isEmpty()) {
+            var size = this.items().size();
+            var str = size == 1 ? "totem_of_preserving.item" : "totem_of_preserving.items";
+            consumer.accept(Component.literal(I18n.get(str, size)));
+        }
     }
 
     public static class Mutable {

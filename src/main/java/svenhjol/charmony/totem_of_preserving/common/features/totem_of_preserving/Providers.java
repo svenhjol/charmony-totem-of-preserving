@@ -1,5 +1,7 @@
 package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import svenhjol.charmony.api.TotemInventoryCheckProvider;
@@ -25,23 +27,23 @@ public final class Providers extends Setup<TotemOfPreserving> implements
 
     @Override
     public List<ItemStack> getInventoryItemsForTotem(Player player) {
-        List<ItemStack> out = new ArrayList<>();
         var inventory = player.getInventory();
 
-        out.addAll(inventory.items);
-        out.addAll(inventory.armor);
-        out.addAll(inventory.offhand);
+        List<ItemStack> out = new ArrayList<>(inventory.items);
+
+        for (EquipmentSlot slot : EquipmentSlotGroup.ARMOR) {
+            out.add(player.getItemBySlot(slot));
+        }
+
+        out.add(player.getItemBySlot(EquipmentSlot.OFFHAND));
 
         return out;
     }
 
     @Override
     public void deleteInventoryItems(Player player) {
-        var inventory = player.getInventory();
-
-        inventory.items.clear();
-        inventory.armor.clear();
-        inventory.offhand.clear();
+        player.getInventory().items.clear();
+        player.equipment.clear();
     }
 
     @Override
