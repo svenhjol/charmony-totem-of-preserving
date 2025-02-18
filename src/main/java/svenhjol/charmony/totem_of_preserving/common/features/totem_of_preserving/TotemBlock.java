@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
@@ -88,8 +89,8 @@ public class TotemBlock extends BaseEntityBlock {
      * Executed when an entity is within the block bounds.
      */
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier insideBlockEffectApplier) {
         TotemOfPreserving.feature().handlers.playerEnteredBlock(level, pos, entity);
-        super.entityInside(state, level, pos, entity);
+        super.entityInside(state, level, pos, entity, insideBlockEffectApplier);
     }
 }

@@ -3,6 +3,7 @@ package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preservin
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
@@ -53,7 +54,7 @@ public class TotemBlockEntity extends BlockEntity {
         finalItems.forEach(items::add);
 
         message = tag.getString(MESSAGE_TAG);
-        owner = tag.getUUID(OWNER_TAG);
+        owner = tag.read(OWNER_TAG, UUIDUtil.CODEC).orElse(null);
         damage = tag.getInt(DAMAGE_TAG);
     }
 
@@ -68,7 +69,7 @@ public class TotemBlockEntity extends BlockEntity {
 
         ContainerHelper.saveAllItems(tag, finalItems, true, provider);
         tag.putString(MESSAGE_TAG, message);
-        tag.putUUID(OWNER_TAG, owner);
+        tag.store(OWNER_TAG, UUIDUtil.CODEC, owner);
         tag.putInt(DAMAGE_TAG, damage);
     }
 
