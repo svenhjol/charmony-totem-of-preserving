@@ -46,16 +46,16 @@ public class TotemBlockEntity extends BlockEntity {
         items.clear();
 
         // This is dumb but I can't think of another way to get the initial size for the nonnulllist.
-        var listTag = tag.getList(ContainerHelper.TAG_ITEMS, 10);
+        var listTag = tag.getList(ContainerHelper.TAG_ITEMS).orElseThrow();
         var size = listTag.size();
 
         NonNullList<ItemStack> finalItems = NonNullList.withSize(size, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(tag, finalItems, provider);
         finalItems.forEach(items::add);
 
-        message = tag.getString(MESSAGE_TAG);
+        message = tag.getString(MESSAGE_TAG).orElseThrow();
         owner = tag.read(OWNER_TAG, UUIDUtil.CODEC).orElse(null);
-        damage = tag.getInt(DAMAGE_TAG);
+        damage = tag.getInt(DAMAGE_TAG).orElseThrow();
     }
 
     // NonNullLists don't support addAll()
