@@ -8,6 +8,7 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "totem_of_preserving.ItemStackMixin",
     "totem_of_preserving.LevelMixin"
   ]
 }

@@ -5,6 +5,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class TotemBlockEntity extends BlockEntity {
@@ -45,17 +47,16 @@ public class TotemBlockEntity extends BlockEntity {
         super.loadAdditional(tag, provider);
         items.clear();
 
-        // This is dumb but I can't think of another way to get the initial size for the nonnulllist.
-        var listTag = tag.getList(ContainerHelper.TAG_ITEMS).orElseThrow();
-        var size = listTag.size();
+        var list = tag.getList(ContainerHelper.TAG_ITEMS);
+        var size = list.map(ListTag::size).orElse(0);
 
         NonNullList<ItemStack> finalItems = NonNullList.withSize(size, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(tag, finalItems, provider);
         finalItems.forEach(items::add);
 
-        message = tag.getString(MESSAGE_TAG).orElseThrow();
+        message = tag.getString(MESSAGE_TAG).orElse("");
         owner = tag.read(OWNER_TAG, UUIDUtil.CODEC).orElse(null);
-        damage = tag.getInt(DAMAGE_TAG).orElseThrow();
+        damage = tag.getInt(DAMAGE_TAG).orElse(0);
     }
 
     // NonNullLists don't support addAll()
