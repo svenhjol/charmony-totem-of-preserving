@@ -29,6 +29,8 @@ public final class Registers extends Setup<TotemOfPreserving> {
                 .persistent(TotemData.CODEC)
                 .networkSynchronized(TotemData.STREAM_CODEC));
 
+        registry.dataComponentTooltipProvider(data);
+
         block = registry.block("totem_of_preserving_holder", TotemBlock::new);
         item = registry.item("totem_of_preserving", TotemItem::new);
 
