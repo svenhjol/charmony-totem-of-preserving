@@ -18,11 +18,9 @@ public final class Providers extends Setup<TotemOfPreserving> implements
     TotemPreservingProvider,
     TotemInventoryCheckProvider
 {
-    public final List<TotemPreservingProvider> preservingProviders = new ArrayList<>();
-    public final List<TotemInventoryCheckProvider> inventoryCheckProviders = new ArrayList<>();
-
     public Providers(TotemOfPreserving feature) {
         super(feature);
+        Api.registerProvider(this);
     }
 
     @Override
@@ -69,14 +67,5 @@ public final class Providers extends Setup<TotemOfPreserving> implements
         }
 
         return Optional.empty();
-    }
-
-    @Override
-    public Runnable boot() {
-        return () -> {
-            Api.registerProvider(this);
-            Api.consume(TotemPreservingProvider.class, preservingProviders::add);
-            Api.consume(TotemInventoryCheckProvider.class, inventoryCheckProviders::add);
-        };
     }
 }

@@ -1,4 +1,8 @@
 {
+  "advancements.charmony-totem-of-preserving.totem_of_preserving.title": "Totem of Preserving",
+  "advancements.charmony-totem-of-preserving.totem_of_preserving.description": "A totem that protects all your items if you die",
+  "advancements.charmony-totem-of-preserving.used_totem_of_preserving.title": "Safe Hands",
+  "advancements.charmony-totem-of-preserving.used_totem_of_preserving.description": "Used a totem to protect your items",
   "gui.charmony-totem-of-preserving.death_position": "Your totem is near %s %s %s",
   "item.charmony-totem-of-preserving.totem_of_preserving": "Totem of Preserving",
   "subtitles.charmony-totem-of-preserving.release_items": "Totem releases items",

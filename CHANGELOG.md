@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+- Standardize advancement namespace.
+
 ## 1.4.0
 
 - Update for Minecraft 1.21.5.

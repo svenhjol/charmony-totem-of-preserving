@@ -3,7 +3,6 @@ package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preservin
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -22,8 +21,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.ItemLore;
-import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmony.api.TotemType;
@@ -115,7 +112,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
 
         // Get items to preserve.
         List<ItemStack> preserveItems = new ArrayList<>();
-        for (var provider : feature().providers.preservingProviders) {
+        for (var provider : feature().registers.preservingProviders) {
             preserveItems.addAll(provider
                 .getInventoryItemsForTotem(player)
                 .stream().filter(i -> !i.isEmpty())
@@ -125,7 +122,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
         // When not in grave mode, look through inventory items for the first empty totem of preserving.
         if (!feature().graveMode()) {
             if (!feature().mustBeInHand()) {
-                for (var provider : feature().providers.inventoryCheckProviders) {
+                for (var provider : feature().registers.inventoryCheckProviders) {
                     var opt = provider.findTotemFromInventory(player, TotemType.Preserving);
                     if (opt.isPresent()) {
                         // Found totem in inventory.
@@ -187,7 +184,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
         }
 
         // Delete player inventory items.
-        for (var provider : feature().providers.preservingProviders) {
+        for (var provider : feature().registers.preservingProviders) {
             provider.deleteInventoryItems(player);
         }
 

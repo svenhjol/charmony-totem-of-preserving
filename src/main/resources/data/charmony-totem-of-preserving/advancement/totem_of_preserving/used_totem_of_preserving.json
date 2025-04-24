@@ -1,5 +1,5 @@
 {
-  "parent": "charmony:totem_of_preserving",
+  "parent": "charmony-totem-of-preserving:root",
   "display": {
     "icon": {
       "id": "charmony-totem-of-preserving:totem_of_preserving",
@@ -8,10 +8,10 @@
       }
     },
     "title": {
-      "translate": "advancements.charmony.used_totem_of_preserving.title"
+      "translate": "advancements.charmony-totem-of-preserving.used_totem_of_preserving.title"
     },
     "description": {
-      "translate": "advancements.charmony.used_totem_of_preserving.description"
+      "translate": "advancements.charmony-totem-of-preserving.used_totem_of_preserving.description"
     },
     "frame": "goal",
     "show_toast": true,

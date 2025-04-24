@@ -3,6 +3,7 @@
 .gradle/
 /build/
 /libs/
+/bin/
 /run/
 /assets/
 /data/
