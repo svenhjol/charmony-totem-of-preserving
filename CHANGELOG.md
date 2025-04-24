@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.2
+
+- Update icon.
+
 ## 1.4.1
 
 - Standardize advancement namespace.
