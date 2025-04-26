@@ -8,8 +8,8 @@ import svenhjol.charmony.api.TotemPreservingProvider;
 import svenhjol.charmony.core.Api;
 import svenhjol.charmony.core.base.Setup;
 import svenhjol.charmony.core.common.CommonRegistry;
-import svenhjol.charmony.core.events.AnvilEvents;
-import svenhjol.charmony.core.events.PlayerKilledDropCallback;
+import svenhjol.charmony.api.events.AnvilEvents;
+import svenhjol.charmony.api.events.PlayerKilledDropCallback;
 
 import java.util.ArrayList;
 import java.util.List;

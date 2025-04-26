@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- Update for API 1.18
+
 ## 1.4.2
 
 - Update icon.
