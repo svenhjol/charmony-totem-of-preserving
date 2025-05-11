@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import svenhjol.charmony.core.client.ItemContainerTooltip;
+import svenhjol.charmony.core.client.SlotSprite;
 
 import java.util.List;
 
@@ -40,6 +41,6 @@ public record Tooltip(List<ItemStack> items) implements ClientTooltipComponent, 
 
     @Override
     public void renderImage(Font font, int x, int y, int k, int l, GuiGraphics guiGraphics) {
-        defaultRenderImage(guiGraphics, font, Texture.Slot, x, y);
+        defaultRenderImage(guiGraphics, font, SlotSprite.Slot, x, y);
     }
 }

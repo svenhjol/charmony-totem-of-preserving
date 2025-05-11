@@ -23,9 +23,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import svenhjol.charmony.api.TotemType;
-import svenhjol.charmony.core.base.Setup;
 import svenhjol.charmony.api.events.AnvilEvents;
+import svenhjol.charmony.api.tweaks.TotemType;
+import svenhjol.charmony.core.base.Setup;
 
 import java.util.*;
 

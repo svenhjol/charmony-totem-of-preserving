@@ -4,9 +4,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import svenhjol.charmony.api.TotemInventoryCheckProvider;
-import svenhjol.charmony.api.TotemPreservingProvider;
-import svenhjol.charmony.api.TotemType;
+import svenhjol.charmony.api.tweaks.TotemInventoryCheckProvider;
+import svenhjol.charmony.api.tweaks.TotemPreservingProvider;
+import svenhjol.charmony.api.tweaks.TotemType;
 import svenhjol.charmony.core.Api;
 import svenhjol.charmony.core.base.Setup;
 

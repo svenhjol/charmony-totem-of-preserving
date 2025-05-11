@@ -3,13 +3,13 @@ package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preservin
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import svenhjol.charmony.api.TotemInventoryCheckProvider;
-import svenhjol.charmony.api.TotemPreservingProvider;
+import svenhjol.charmony.api.events.AnvilEvents;
+import svenhjol.charmony.api.events.PlayerKilledDropCallback;
+import svenhjol.charmony.api.tweaks.TotemInventoryCheckProvider;
+import svenhjol.charmony.api.tweaks.TotemPreservingProvider;
 import svenhjol.charmony.core.Api;
 import svenhjol.charmony.core.base.Setup;
 import svenhjol.charmony.core.common.CommonRegistry;
-import svenhjol.charmony.api.events.AnvilEvents;
-import svenhjol.charmony.api.events.PlayerKilledDropCallback;
 
 import java.util.ArrayList;
 import java.util.List;
