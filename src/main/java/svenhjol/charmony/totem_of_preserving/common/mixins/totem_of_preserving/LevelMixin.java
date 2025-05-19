@@ -1,5 +1,7 @@
 package svenhjol.charmony.totem_of_preserving.common.mixins.totem_of_preserving;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
@@ -8,9 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemOfPreserving;
 
 @Mixin(Level.class)
@@ -18,37 +17,34 @@ public abstract class LevelMixin {
     @Shadow
     public abstract ResourceKey<Level> dimension();
 
-    @Inject(
-        method = "destroyBlock",
-        at = @At("HEAD"),
-        cancellable = true
+    @WrapMethod(
+        method = "destroyBlock"
     )
-    private void hookDestroyBlock(BlockPos pos, boolean bl, Entity entity, int i, CallbackInfoReturnable<Boolean> cir) {
+    private boolean hookDestroyBlock(BlockPos pos, boolean bl, Entity entity, int i, Operation<Boolean> original) {
         if (isProtected(pos)) {
-            cir.setReturnValue(false);
+            return false;
         }
+        return original.call(pos, bl, entity, i);
     }
 
-    @Inject(
-        method = "removeBlock",
-        at = @At("HEAD"),
-        cancellable = true
+    @WrapMethod(
+        method = "removeBlock"
     )
-    private void hookRemoveBlock(BlockPos pos, boolean bl, CallbackInfoReturnable<Boolean> cir) {
+    private boolean hookRemoveBlock(BlockPos pos, boolean bl, Operation<Boolean> original) {
         if (isProtected(pos)) {
-            cir.setReturnValue(false);
+            return false;
         }
+        return original.call(pos, bl);
     }
 
-    @Inject(
-        method = "setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)Z",
-        at = @At("HEAD"),
-        cancellable = true
+    @WrapMethod(
+        method = "setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)Z"
     )
-    private void hookSetBlock(BlockPos pos, BlockState blockState, int i, int j, CallbackInfoReturnable<Boolean> cir) {
+    private boolean hookSetBlock(BlockPos pos, BlockState state, int i, int j, Operation<Boolean> original) {
         if (isProtected(pos)) {
-            cir.setReturnValue(false);
+            return false;
         }
+        return original.call(pos, state, i, j);
     }
 
     @Unique

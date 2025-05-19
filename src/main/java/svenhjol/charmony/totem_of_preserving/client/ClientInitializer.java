@@ -1,7 +1,7 @@
 package svenhjol.charmony.totem_of_preserving.client;
 
 import net.fabricmc.api.ClientModInitializer;
-import svenhjol.charmony.core.enums.Side;
+import svenhjol.charmony.api.core.Side;
 import svenhjol.charmony.totem_of_preserving.TotemOfPreservingMod;
 import svenhjol.charmony.totem_of_preserving.client.features.totem_of_preserving.TotemOfPreserving;
 

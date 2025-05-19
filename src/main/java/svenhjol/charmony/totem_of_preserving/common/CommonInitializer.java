@@ -1,7 +1,7 @@
 package svenhjol.charmony.totem_of_preserving.common;
 
 import net.fabricmc.api.ModInitializer;
-import svenhjol.charmony.core.enums.Side;
+import svenhjol.charmony.api.core.Side;
 import svenhjol.charmony.totem_of_preserving.TotemOfPreservingMod;
 import svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving.TotemOfPreserving;
 

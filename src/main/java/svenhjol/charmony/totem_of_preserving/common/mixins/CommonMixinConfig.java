@@ -1,7 +1,7 @@
 package svenhjol.charmony.totem_of_preserving.common.mixins;
 
 import svenhjol.charmony.core.base.MixinConfig;
-import svenhjol.charmony.core.enums.Side;
+import svenhjol.charmony.api.core.Side;
 import svenhjol.charmony.totem_of_preserving.TotemOfPreservingMod;
 
 public class CommonMixinConfig extends MixinConfig {

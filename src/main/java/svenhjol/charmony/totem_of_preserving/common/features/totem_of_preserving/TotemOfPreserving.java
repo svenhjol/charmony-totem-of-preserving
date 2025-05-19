@@ -1,13 +1,14 @@
 package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.util.Mth;
-import svenhjol.charmony.core.annotations.Configurable;
-import svenhjol.charmony.core.annotations.FeatureDefinition;
+import svenhjol.charmony.api.core.Configurable;
+import svenhjol.charmony.api.core.FeatureDefinition;
 import svenhjol.charmony.core.base.Mod;
 import svenhjol.charmony.core.base.SidedFeature;
-import svenhjol.charmony.core.enums.Side;
+import svenhjol.charmony.api.core.Side;
 
 @FeatureDefinition(side = Side.Common, canBeDisabled = false, description = "Protects your items on death.")
+@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 public final class TotemOfPreserving extends SidedFeature {
     public final Advancements advancements;
     public final Registers registers;
