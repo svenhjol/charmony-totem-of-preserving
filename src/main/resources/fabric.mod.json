@@ -9,7 +9,7 @@
   "authors": [
     "svenhjol"
   ],
-  "icon": "assets/charmony-totem-of-preserving/textures/gui/sprites/icon.png",
+  "icon": "assets/charmony/textures/gui/sprites/charmony-totem-of-preserving.png",
   "license": "MIT",
   "environment": "*",
   "accessWidener": "charmony-totem-of-preserving.accesswidener",
@@ -19,9 +19,6 @@
     ],
     "client": [
         "svenhjol.charmony.totem_of_preserving.client.ClientInitializer"
-    ],
-    "modmenu": [
-        "svenhjol.charmony.totem_of_preserving.integration.ModMenuPlugin"
     ]
   },
 

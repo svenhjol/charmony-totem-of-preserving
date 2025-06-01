@@ -327,7 +327,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
             var y = spawnPos.getY();
             var z = spawnPos.getZ();
 
-            player.displayClientMessage(Component.translatable("gui.charmony-totem-of-preserving.death_position", x, y, z), false);
+            player.displayClientMessage(Component.translatable("gui.charmony.death_position", x, y, z), false);
         }
 
         return true;

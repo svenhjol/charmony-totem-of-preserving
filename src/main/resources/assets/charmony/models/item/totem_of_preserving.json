@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "charmony:item/totem_of_preserving"
+  }
+}

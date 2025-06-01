@@ -1,23 +1,22 @@
 package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.UUIDUtil;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class TotemBlockEntity extends BlockEntity {
+    private static final String COUNT_TAG = "count";
     private static final String OWNER_TAG = "owner";
     private static final String MESSAGE_TAG = "message";
     private static final String DAMAGE_TAG = "damage";
@@ -43,35 +42,36 @@ public class TotemBlockEntity extends BlockEntity {
     // NonNullLists don't support addAll()
     @SuppressWarnings("UseBulkOperation")
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.loadAdditional(tag, provider);
+    protected void loadAdditional(ValueInput valueInput) {
+        super.loadAdditional(valueInput);
         items.clear();
 
-        var list = tag.getList(ContainerHelper.TAG_ITEMS);
-        var size = list.map(ListTag::size).orElse(0);
+        var count = valueInput.getIntOr(COUNT_TAG, 0);
 
-        NonNullList<ItemStack> finalItems = NonNullList.withSize(size, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(tag, finalItems, provider);
+        message = valueInput.getString(MESSAGE_TAG).orElse("");
+        owner = valueInput.read(OWNER_TAG, UUIDUtil.CODEC).orElse(null);
+        damage = valueInput.getInt(DAMAGE_TAG).orElse(0);
+
+        NonNullList<ItemStack> finalItems = NonNullList.withSize(count, ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(valueInput, finalItems);
         finalItems.forEach(items::add);
-
-        message = tag.getString(MESSAGE_TAG).orElse("");
-        owner = tag.read(OWNER_TAG, UUIDUtil.CODEC).orElse(null);
-        damage = tag.getInt(DAMAGE_TAG).orElse(0);
     }
 
     // NonNullLists don't support addAll()
     @SuppressWarnings("UseBulkOperation")
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.saveAdditional(tag, provider);
+    protected void saveAdditional(ValueOutput valueOutput) {
+        super.saveAdditional(valueOutput);
 
         NonNullList<ItemStack> finalItems = NonNullList.create();
         items.forEach(finalItems::add);
 
-        ContainerHelper.saveAllItems(tag, finalItems, true, provider);
-        tag.putString(MESSAGE_TAG, message);
-        tag.store(OWNER_TAG, UUIDUtil.CODEC, owner);
-        tag.putInt(DAMAGE_TAG, damage);
+        ContainerHelper.saveAllItems(valueOutput, finalItems, true);
+
+        valueOutput.putInt(COUNT_TAG, items.size());
+        valueOutput.putString(MESSAGE_TAG, message);
+        valueOutput.store(OWNER_TAG, UUIDUtil.CODEC, owner);
+        valueOutput.putInt(DAMAGE_TAG, damage);
     }
 
     public void setDirty() {

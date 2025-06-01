@@ -1,0 +1,20 @@
+{
+  "release_totem_items": {
+    "sounds": [
+      {
+        "name": "charmony:totem_release_items",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.charmony.release_items"
+  },
+  "store_totem_items": {
+    "sounds": [
+      {
+        "name": "charmony:totem_store_items",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.charmony.store_items"
+  }
+}

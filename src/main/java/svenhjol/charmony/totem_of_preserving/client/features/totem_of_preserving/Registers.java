@@ -1,6 +1,6 @@
 package svenhjol.charmony.totem_of_preserving.client.features.totem_of_preserving;
 
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import svenhjol.charmony.core.base.Setup;
@@ -10,14 +10,15 @@ public final class Registers extends Setup<TotemOfPreserving> {
     public Registers(TotemOfPreserving feature) {
         super(feature);
         var registry = ClientRegistry.forFeature(feature);
+        var common = feature.common.get();
 
         registry.blockEntityRenderer(
-            feature().common.get().registers.blockEntity,
-            () -> TotemRenderer::new);
+            common.registers.blockEntity.get(),
+            TotemRenderer::new);
 
         registry.blockRenderType(
-            feature().common.get().registers.block,
-            RenderType::cutout);
+            common.registers.block.get(),
+            ChunkSectionLayer.CUTOUT);
     }
 
     @Override
