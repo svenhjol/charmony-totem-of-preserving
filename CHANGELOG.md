@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.1
+
+- Add totems to ancient city and mansion loot.
+- Add totems sold by wandering traders.
+
 ## 1.8.0
 
 - Update for 1.21.6.

@@ -17,7 +17,6 @@ public final class TotemOfPreserving extends SidedFeature {
 
     @Configurable(
         name = "Grave mode",
-        requireRestart = false,
         description = """
             If true, a totem of preserving will always be created when you die.
             If false, you must be holding a totem of preserving to preserve your items on death."""
@@ -58,6 +57,30 @@ public final class TotemOfPreserving extends SidedFeature {
     )
     private static boolean showDeathPositionInChat = false;
 
+    @Configurable(
+        name = "Woodland Mansion loot chance",
+        description = """
+            Chance (out of 1.0) of a Totem of Preserving being found in Woodland Mansion chests.
+            Note: This has no effect if 'Grave mode' is enabled."""
+    )
+    private static double woodlandMansionChance = 0.5d;
+
+    @Configurable(
+        name = "Ancient City loot chance",
+        description = """
+            Chance (out of 1.0) of a Totem of Preserving being found in Ancient City chests.
+            Note: This has no effect if 'Grave mode' is enabled."""
+    )
+    private static double ancientCityChance = 0.25d;
+
+    @Configurable(
+        name = "Wandering Trader cost",
+        description = """
+            The base emerald cost of a Totem of Preserving when sold by a Wandering Trader. Set to zero to disable.
+            Note: This has no effect if 'Grave mode' is enabled."""
+    )
+    private static int wanderingTraderCost = 10;
+
     public TotemOfPreserving(Mod instance) {
         super(instance);
 
@@ -91,4 +114,15 @@ public final class TotemOfPreserving extends SidedFeature {
         return showDeathPositionInChat;
     }
 
+    public double woodlandMansionChance() {
+        return Mth.clamp(woodlandMansionChance, 0.0d, 1.0d);
+    }
+
+    public double ancientCityChance() {
+        return Mth.clamp(ancientCityChance, 0.0d, 1.0d);
+    }
+
+    public int wanderingTraderCost() {
+        return Mth.clamp(wanderingTraderCost, 0, 64);
+    }
 }

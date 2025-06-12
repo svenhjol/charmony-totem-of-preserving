@@ -1,5 +1,6 @@
 package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -10,6 +11,7 @@ import svenhjol.charmony.api.tweaks.TotemPreservingProvider;
 import svenhjol.charmony.core.Api;
 import svenhjol.charmony.core.base.Setup;
 import svenhjol.charmony.core.common.CommonRegistry;
+import svenhjol.charmony.core.common.GenericTrades;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,16 @@ public final class Registers extends Setup<TotemOfPreserving> {
 
             PlayerKilledDropCallback.EVENT.register(feature().handlers::playerInventoryDrop);
             AnvilEvents.UPDATE.handle(feature().handlers::anvilUpdate);
+            LootTableEvents.MODIFY.register(feature().handlers::handleLootTableModify);
+
+            if (feature().wanderingTraderCost() > 0) {
+                var registry = CommonRegistry.forFeature(feature());
+                registry.wandererTrade(() -> new GenericTrades.ItemsForEmeralds(
+                    feature().registers.item.get(),
+                    feature().wanderingTraderCost(), 6,
+                    1, 0,
+                    10, 1), false);
+            }
         };
     }
 }

@@ -1,10 +1,13 @@
 package svenhjol.charmony.totem_of_preserving.common.features.totem_of_preserving;
 
+import net.fabricmc.fabric.api.loot.v3.LootTableSource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -23,6 +26,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import svenhjol.charmony.api.events.AnvilEvents;
 import svenhjol.charmony.api.tweaks.TotemType;
 import svenhjol.charmony.core.base.Setup;
@@ -439,5 +448,25 @@ public final class Handlers extends Setup<TotemOfPreserving> {
             var pz = pos.getZ() + 0.5d + (Math.random() - 0.5d) * spread;
             minecraft.level.addParticle(ParticleTypes.LARGE_SMOKE, px, py, pz, 0.0d, 0.1d, 0.0d);
         }
+    }
+
+    public void handleLootTableModify(ResourceKey<LootTable> key, LootTable.Builder builder, LootTableSource source, HolderLookup.Provider provider) {
+        if (feature().graveMode()) return;
+
+        if (key == BuiltInLootTables.WOODLAND_MANSION && feature().woodlandMansionChance() > 0) {
+            doModifyLootTable(builder, feature().woodlandMansionChance());
+        }
+
+        if (key == BuiltInLootTables.ANCIENT_CITY && feature().ancientCityChance() > 0) {
+            doModifyLootTable(builder, feature().ancientCityChance());
+        }
+    }
+
+    private void doModifyLootTable(LootTable.Builder builder, double chance) {
+        var pool = LootPool.lootPool()
+            .setRolls(ConstantValue.exactly(1))
+            .when(LootItemRandomChanceCondition.randomChance((float)chance))
+            .add(LootItem.lootTableItem(feature().registers.item.get()).setWeight(1));
+        builder.pool(pool.build());
     }
 }
