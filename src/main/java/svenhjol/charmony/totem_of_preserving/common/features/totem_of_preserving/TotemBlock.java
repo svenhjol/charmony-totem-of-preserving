@@ -30,7 +30,7 @@ public class TotemBlock extends BaseEntityBlock {
     public TotemBlock(ResourceKey<Block> key) {
         this(Properties.ofFullCopy(Blocks.GLASS)
             .strength(-1.0f, 3600000.0f)
-            .noCollission()
+            .noCollision()
             .noOcclusion()
             .noLootTable()
             .setId(key));

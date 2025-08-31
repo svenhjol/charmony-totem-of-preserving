@@ -96,7 +96,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
         if (feature().handlers.protectedPositions.containsKey(dimension)
             && feature().handlers.protectedPositions.get(dimension).contains(pos)
             && level.getBlockEntity(pos) instanceof TotemBlockEntity totem
-            && !level.isClientSide) {
+            && !level.isClientSide()) {
 
             log().debug("Something wants to overwrite the totem block, emergency item drop");
             var items = totem.getItems();
@@ -110,7 +110,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
 
     @SuppressWarnings("unused")
     public InteractionResult playerInventoryDrop(Player player, Inventory inventory) {
-        if (player.level().isClientSide) {
+        if (player.level().isClientSide()) {
             return InteractionResult.PASS;
         }
 
@@ -399,7 +399,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
             destroyTotem(totem, player);
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             // Add totem items to the world.
             for (var stack : data.items()) {
                 var itemEntity = new ItemEntity(level, pos.getX(), pos.getY() + 0.5d, pos.getZ(), stack);
@@ -418,7 +418,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
     }
 
     private void destroyTotem(ItemStack stack, Player player) {
-        if (!player.level().isClientSide) {
+        if (!player.level().isClientSide()) {
             destroyTotemServer(player, stack);
         } else {
             destroyTotemClient(player.blockPosition());
@@ -432,7 +432,7 @@ public final class Handlers extends Setup<TotemOfPreserving> {
 
         totem.setCount(0);
 
-        if (!player.level().isClientSide) {
+        if (!player.level().isClientSide()) {
             player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 0.8f, 1.0f);
         }
     }
